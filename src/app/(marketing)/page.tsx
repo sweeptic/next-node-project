@@ -8,7 +8,7 @@ export default function Home() {
         libero dolor aspernatur rerum!
       </p>
 
-      <Link href="/news">Read the latest news</Link>
+      <Link href="/movies">Read the latest Movies</Link>
     </div>
   );
 }

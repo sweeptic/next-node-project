@@ -1,20 +1,19 @@
 import { IMovies } from '@src/backend/src/models/movies';
 import Image from 'next/image';
+import { notFound } from 'next/navigation';
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-export default async function Page({ params }: { params: any }) {
-  //   console.log('params', params.slug);
+export default async function Page({ params }: { params: Promise<{ _id: string }> }) {
   const { _id } = await params;
 
-  const movieData = await fetch(`http://localhost:8080/movies/${_id}`, {
+  const response = await fetch(`http://localhost:8080/movies/${_id}`, {
     cache: 'no-store',
   });
 
-  const { movieDetails }: { movieDetails: IMovies } = await movieData.json();
+  const { movieDetails }: { movieDetails: IMovies } = await response.json();
 
-  //   console.log('movieDetail', movieDetails);
-
-  //   console.log('_id', _id);
+  if (!response.ok) {
+    return notFound();
+  }
 
   return (
     <div>

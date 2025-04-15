@@ -1,10 +1,6 @@
-import MoviesList from '@src/app/components/news-list';
-
-// export const revalidate = 5;
-export const dynamic = 'force-dynamic'; // no-store
+import MoviesList from '@src/app/components/movies-list';
 
 export default async function Page() {
-  // 'use server';
   const fetchData = await fetch('http://localhost:8080/movies', {
     cache: 'no-store',
   });
@@ -12,7 +8,7 @@ export default async function Page() {
 
   return (
     <div>
-      <h2>news</h2>
+      <h2>Movies</h2>
       <MoviesList movies={data.movies} />
     </div>
   );
