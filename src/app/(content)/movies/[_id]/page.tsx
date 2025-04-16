@@ -1,19 +1,10 @@
-import { IMovies } from '@src/backend/src/models/movies';
 import Image from 'next/image';
-import { notFound } from 'next/navigation';
+import { getMovieDetails } from '@src/lib/movies';
 
 export default async function Page({ params }: { params: Promise<{ _id: string }> }) {
   const { _id } = await params;
 
-  const response = await fetch(`http://localhost:8080/movies/${_id}`, {
-    cache: 'no-store',
-  });
-
-  const { movieDetails }: { movieDetails: IMovies } = await response.json();
-
-  if (!response.ok) {
-    return notFound();
-  }
+  const movieDetails = await getMovieDetails(_id);
 
   return (
     <div>
