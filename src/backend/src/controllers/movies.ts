@@ -13,8 +13,10 @@ function nextError(err: Error, next: NextFunction) {
   next(err);
 }
 
-export function getMovies(_req: Request, res: Response, next: NextFunction) {
-  Movies.find()
+export function getMovies(req: Request, res: Response, next: NextFunction) {
+  const year = req.query.year;
+
+  Movies.find(year ? { year: year } : {})
     .limit(20)
     .then((movies) => {
       res.status(200).json({
@@ -45,22 +47,6 @@ export function getAvailableNewsYears(_req: Request, res: Response, next: NextFu
       res.status(200).json({
         message: 'fetched years successfully',
         years: years || [],
-      });
-    })
-    .catch((err) => {
-      nextError(err, next);
-    });
-}
-
-export function getMoviesByYears(req: Request, res: Response, next: NextFunction) {
-  const year = req.params.year;
-
-  Movies.find({ year: year })
-    .limit(5)
-    .then((movies) => {
-      res.status(200).json({
-        message: 'fetched movies successfully',
-        movies: movies || [],
       });
     })
     .catch((err) => {

@@ -1,8 +1,8 @@
-import { getAvailableNewsYears, getMoviesForYear } from '@src/lib/movies';
 import { IMovies } from '@src/backend/src/models/movies';
 import Link from 'next/link';
 import MoviesList from '@src/app/components/movies-list';
 import { Suspense } from 'react';
+import { getAvailableNewsYears, getMovies } from '@src/lib/movies';
 
 async function FilterHeader({ year }: { year: string }) {
   const { years }: { years: number[] } = await getAvailableNewsYears();
@@ -34,7 +34,7 @@ async function FilteredMovies({ year }: { year: string }) {
   let moviesList: IMovies[] = [];
 
   if (year) {
-    const { movies } = await getMoviesForYear(+year);
+    const movies = await getMovies(year);
     moviesList = movies;
   }
 

@@ -7,7 +7,7 @@ export default function MoviesList({ movies }: { movies: IMovies[] | undefined }
     <ul className="movies-list">
       {movies?.map((MovieItem: IMovies) => {
         return (
-          <li key={MovieItem.title}>
+          <li key={MovieItem._id}>
             <Link href={`/movies/${MovieItem._id}`}>
               <CustomImage poster={MovieItem.poster} title={MovieItem.title} />
               <span>{MovieItem.title}</span>

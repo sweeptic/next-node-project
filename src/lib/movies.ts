@@ -15,8 +15,13 @@ export async function getMovieDetails(_id: string) {
   return movieDetails;
 }
 
-export async function getAllMovies() {
-  const response = await fetch('http://localhost:8080/movies', {
+export async function getMovies(year?: string) {
+  const params = new URLSearchParams();
+  if (year) {
+    params.append('year', year);
+  }
+
+  const response = await fetch(`http://localhost:8080/movies?${params}`, {
     cache: 'no-store',
   });
   const { movies }: { movies: IMovies[] } = await response.json();
@@ -44,17 +49,6 @@ export async function waitingForLoading() {
 
 export async function getAvailableNewsYears() {
   const response = await fetch('http://localhost:8080/get-available-movies-years', {
-    cache: 'no-store',
-  });
-  const data = response.json();
-
-  await waitingForLoading();
-
-  return data;
-}
-
-export async function getMoviesForYear(year: number) {
-  const response = await fetch(`http://localhost:8080/get-movies-by-years/${year}`, {
     cache: 'no-store',
   });
   const data = response.json();

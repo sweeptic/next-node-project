@@ -1,8 +1,8 @@
 import MoviesList from '@src/app/components/movies-list';
-import { getAllMovies } from '@src/lib/movies';
+import { getMovies } from '@src/lib/movies';
 
 export default async function Page() {
-  const movies = await getAllMovies();
+  const movies = await getMovies();
 
   return (
     <div>
