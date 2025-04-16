@@ -2,9 +2,10 @@ import { IMovies } from '@src/backend/src/models/movies';
 import { notFound } from 'next/navigation';
 
 export async function getMovieDetails(_id: string) {
-  const response = await fetch(`http://localhost:8080/movies/${_id}`, {
-    cache: 'no-store',
-  });
+  const response = await fetch(
+    `http://localhost:8080/movies/${_id}`
+    // { cache: 'no-store',}
+  );
   const { movieDetails }: { movieDetails: IMovies } = await response.json();
 
   if (!response.ok) {
@@ -21,9 +22,10 @@ export async function getMovies(year?: string) {
     params.append('year', year);
   }
 
-  const response = await fetch(`http://localhost:8080/movies?${params}`, {
-    cache: 'no-store',
-  });
+  const response = await fetch(
+    `http://localhost:8080/movies?${params}`
+    // { cache: 'no-store',}
+  );
   const { movies }: { movies: IMovies[] } = await response.json();
 
   await waitingForLoading();
@@ -31,9 +33,10 @@ export async function getMovies(year?: string) {
 }
 
 export async function getLatestMovies() {
-  const response = await fetch('http://localhost:8080/movies', {
-    cache: 'no-store',
-  });
+  const response = await fetch(
+    'http://localhost:8080/movies'
+    // {cache: 'no-store',}
+  );
   const { movies }: { movies: IMovies[] } = await response.json();
 
   //   const actualYear = new Date().getFullYear();
@@ -48,9 +51,10 @@ export async function waitingForLoading() {
 }
 
 export async function getAvailableNewsYears() {
-  const response = await fetch('http://localhost:8080/get-available-movies-years', {
-    cache: 'no-store',
-  });
+  const response = await fetch(
+    'http://localhost:8080/get-available-movies-years'
+    // {cache: 'no-store',}
+  );
   const data = response.json();
 
   await waitingForLoading();

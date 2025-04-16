@@ -1,8 +1,8 @@
+import { getAvailableNewsYears, getMovies } from '@src/lib/movies';
 import { IMovies } from '@src/backend/src/models/movies';
 import Link from 'next/link';
 import MoviesList from '@src/app/components/movies-list';
 import { Suspense } from 'react';
-import { getAvailableNewsYears, getMovies } from '@src/lib/movies';
 
 async function FilterHeader({ year }: { year: string }) {
   const { years }: { years: number[] } = await getAvailableNewsYears();
@@ -47,7 +47,12 @@ async function FilteredMovies({ year }: { year: string }) {
   return moviesContent;
 }
 
-export default async function Page({ params }: { params: { filter: string } }) {
+type PageProps = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  params: Promise<any> | undefined;
+};
+
+export default async function Page({ params }: PageProps) {
   const { filter } = await params;
 
   const selectedYear = filter?.[0];
@@ -57,7 +62,7 @@ export default async function Page({ params }: { params: { filter: string } }) {
       <Suspense fallback={<p>Loading filter...</p>}>
         <FilterHeader year={selectedYear} />
       </Suspense>
-      <Suspense fallback={<p>Loading filter...</p>}>
+      <Suspense fallback={<p>Loading filtered movies...</p>}>
         <FilteredMovies year={selectedYear} />
       </Suspense>
     </div>

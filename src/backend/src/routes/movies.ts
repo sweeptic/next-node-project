@@ -1,4 +1,4 @@
-import { getAvailableNewsYears, getMovie, getMovies } from 'controllers/movies';
+import { getAvailableNewsYears, getMovie, getMovies } from '../controllers/movies';
 import { Router } from 'express';
 
 const moviesRoutes = Router();

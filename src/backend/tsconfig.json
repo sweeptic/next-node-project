@@ -1,22 +1,23 @@
 {
-    "compilerOptions": {
-        "target": "es2016",
-        "module": "commonjs",
-        "outDir": "./dist",
-        "rootDir": "./src",
-        "moduleResolution": "node",
-        "strict": true,
-        "esModuleInterop": true,
-        "forceConsistentCasingInFileNames": true,
-        "skipLibCheck": true,
-        "baseUrl": "./src",
-        "paths": {
-            "@src/*": ["src/*"]
-        }
-    },
-    "include": ["./src/**/*", "./src/**/*.json"],
-    "exclude": ["node_modules", "dist"],
-    "ts-node": {
-        "require": ["tsconfig-paths/register"]
-    }
+  "compilerOptions": {
+    "target": "es2016",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "moduleResolution": "node",
+    "isolatedModules": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
+    // "rootDir": "./",
+    // "baseUrl": "./",
+    // "paths": {
+    //   "@src/*": ["./src/*"]
+    // }
+  },
+  "include": ["./src/**/*", "./src/**/*.json"],
+  "exclude": ["node_modules", "dist"],
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  }
 }

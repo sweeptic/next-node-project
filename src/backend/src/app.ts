@@ -2,7 +2,7 @@ import 'dotenv/config';
 import express, { ErrorRequestHandler } from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
-import moviesRoutes from 'routes/movies';
+import moviesRoutes from './routes/movies';
 
 const app = express();
 

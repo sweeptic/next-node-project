@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import Movies from 'models/movies';
+import Movies from '../models/movies';
 
 interface Error {
   statusCode: number;
